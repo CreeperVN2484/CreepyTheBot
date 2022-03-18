@@ -1,7 +1,6 @@
 
 const { Client } = require('discord.js');
 const client = new Client();
-const keepAlive = require("./server.js");
 
 require('./utils/defines')(client);
 require('./utils/structure/registery')(client);
@@ -17,5 +16,4 @@ client.on('messageUpdate', (o, message) => {
 require('./utils/handlers/editHandles')(client, message);
 })
 
-keepAlive()
 client.login(process.env.TOKEN)
