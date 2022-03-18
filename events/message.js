@@ -2,6 +2,7 @@
 const { Client, Message, MessageEmbed } = require('discord.js');
 
 module.exports = async(client, message) => {
+    let mainPrefix = "."
     if (message.author.bot) return;
 
     var prePrefix;
