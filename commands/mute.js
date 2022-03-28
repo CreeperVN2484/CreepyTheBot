@@ -14,13 +14,6 @@ module.exports.config = {
     example: '.mute @Slayer 10m',
 }
 
-/**
- * 
- * @param {Client} client 
- * @param {Message} message 
- * @param {*} args 
- */
-
 module.exports.run = async(client, message, args) => {
     const userInput = message.mentions.members.last() ? message.mentions.members.last() : args[0]
 
@@ -34,7 +27,7 @@ module.exports.run = async(client, message, args) => {
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
 
-    let muteRole = require('../database/muterole.json')[message.guild.id].role;
+    let muteRole = require('../database/muterole.json') [message.guild.id].role;
 
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
@@ -60,7 +53,7 @@ module.exports.run = async(client, message, args) => {
 
 const Muted = new MessageEmbed()
 .setColor(client.color)
-.setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ `)
+    .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ \n **WARNING: unmute havent been implement yet, use another bot to unmute or .mute @user 0 `)
 
     mm.roles.add(muteRole).then(() => {
 

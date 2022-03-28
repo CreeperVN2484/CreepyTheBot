@@ -37,7 +37,7 @@ ${pu.config.name ? `**Name:** ${pu.config.name}` : ""}${pu.config.description ? 
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setTitle("Bot's commands")
         .setThumbnail(client.user.displayAvatarURL())
-        .setDescription("\n__The bot is currently hosting at United States (Server 1)__\n *Here is **Every** Commands that I have for you!*\n\n **Moderator Commands** \n`ban` `kick` `warn` `unban` `lock` `unlock` `delwarn` `modlogs` `warning` `mute` `unmute` `nickname` `setmodlog` `warnings`\n\n**Fun commands** \n `quiz (disabled for making more questions)`\n\n**Management Commands**  \n `invites` `objembed` `settings` `setup`\n\n**Misc Commands** \n `avatar` `roleinfo` `snipe` `whois`\n\n **Information commands.**  \n `help` `ping` `serverinfo`\n\n**Setting commands** \n `disable` `enable` `prefix` `setmuterole` `setperms`")
+        .setDescription("\n__The bot is currently hosting at United States (Server 1)__\n *Here is **Every** Commands that I have for you!*\n\n **Moderator Commands** \n`ban` `kick` `warn` `unban` `lock` `unlock` `delwarn` `modlogs` `warning` `mute` `nickname` `setmodlog` `warnings`\n\n**Fun commands** \n `quiz`\n\n**Management Commands**  \n `invites` `objembed` `settings` `setup`\n\n**Misc Commands** \n `avatar` `roleinfo` `snipe` `whois`\n\n **Information commands.**  \n `help` `ping` `serverinfo`\n\n**Setting commands** \n `disable` `enable` `prefix` `setmuterole` `setperms`")
         .setFooter(`${message.author.tag}`, message.author.displayAvatarURL())
     message.channel.send(embed)
         let infoembed = new MessageEmbed()
