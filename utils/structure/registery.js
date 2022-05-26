@@ -73,10 +73,6 @@ module.exports = (client) => {
     .setColor('FF0000')
     .setDescription(`${client.fail} This is a guild only command`)
 
-    client.noMuteRole = new MessageEmbed()
-    .setColor('FF0000')
-    .setDescription(`${client.fail} Failed to find mute role`);
-
     client.muteRoleInvalid = new MessageEmbed()
     .setColor('FF0000')
     .setDescription(`${client.fail} Mute role found in database but not server`)
