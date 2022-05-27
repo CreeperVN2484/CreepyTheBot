@@ -14,12 +14,19 @@ module.exports.config = {
     example: '.mute @Slayer 10m',
 }
 
-module.exports.run = async(client, message, args) => {
+/**
+ * 
+ * @param {Client} client 
+ * @param {Message} message 
+ * @param {*} args 
+ */
+
+module.exports.run = async (client, message, args) => {
     const userInput = message.mentions.members.last() ? message.mentions.members.last() : args[0]
 
-    let mm ;
+    let mm;
     try {
-    if (userInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
+        if (userInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
     } catch {
 
     }
@@ -27,8 +34,7 @@ module.exports.run = async(client, message, args) => {
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
 
-    let muteRole = require("../database/muterole.json")[message.guild.id].role;
-    console.log(muteRole)
+    let muteRole = require('../database/muterole.json')[message.guild.id].role;
 
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
@@ -45,48 +51,48 @@ module.exports.run = async(client, message, args) => {
 
 
     try {
-    if (mRoleFetch.position >= message.guild.me.roles.highest.position) {
-        return message.channel.send(client.roleHigherThanMe)
+        if (mRoleFetch.position >= message.guild.me.roles.highest.position) {
+            return message.channel.send(client.roleHigherThanMe)
+        }
+    } catch {
+
     }
-} catch {
 
-}
-
-const Muted = new MessageEmbed()
-.setColor(client.color)
-    .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ \n **WARNING: unmute havent been implement yet, use another bot to unmute or .mute @user 0 `)
+    const Muted = new MessageEmbed()
+        .setColor(client.color)
+        .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ `)
 
     mm.roles.add(muteRole).then(() => {
 
         const userLogs = require('../database/userlogs.json')
 
-    if (!userLogs[mm.id]) {
-        userLogs[mm.id] = {};
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
- 
-        })
-        if (!userLogs[mm.id][message.guild.id]) {
-            userLogs[mm.id][message.guild.id] = {};
+        if (!userLogs[mm.id]) {
+            userLogs[mm.id] = {};
             fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
+
+            })
+            if (!userLogs[mm.id][message.guild.id]) {
+                userLogs[mm.id][message.guild.id] = {};
+                fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
+
+                })
+            }
+        }
+
+        if (!userLogs[mm.id][message.guild.id].logs) {
+            userLogs[mm.id][message.guild.id] = {
+                logs: 0
+            };
+            fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
+
             })
         }
-    }
- 
-    if (!userLogs[mm.id][message.guild.id].logs) {
-        userLogs[mm.id][message.guild.id] = {
-            logs: 0
-        };
+
+        userLogs[mm.id][message.guild.id].logs++
+
+
         fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-    }
- 
-    userLogs[mm.id][message.guild.id].logs++
- 
- 
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
+
         })
 
 
