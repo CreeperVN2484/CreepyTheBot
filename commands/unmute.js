@@ -3,15 +3,15 @@ const { Client, Message, MessageEmbed } = require('discord.js');
 const fs = require('fs')
 
 module.exports.config = {
-    name: "mute",
+    name: "unmute",
     aliases: ['m'],
     permissions: ['MANAGE_MESSAGES'],
     guildOnly: true,
     group: 'moderation',
     botperms: ['EMBED_LINKS'],
     description: "Unmute a user",
-    usage: '.mute [@user] [time]',
-    example: '.mute @Slayer 10m',
+    usage: '.unmute [@user] [time]',
+    example: '.unmute @Slayer 10m',
 }
 
 /**
