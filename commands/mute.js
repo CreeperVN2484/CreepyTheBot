@@ -66,6 +66,7 @@ module.exports.run = async (client, message, args) => {
     if (time) {
         mm.roles.add(muteRole).then(() => {
             setTimeout(() => {
+                mm.roles.remove(muteRole)
             }, ms(time))
         }
 

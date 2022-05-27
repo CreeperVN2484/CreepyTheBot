@@ -62,6 +62,7 @@ module.exports.run = async (client, message, args) => {
         .setColor("00FF00")
         .setDescription(`${client.success} _\`${mm.user.username}\` has been unmuted_ `)
 
-    mm.roles.remove(muteRole)
+
+    message.channel.send(unmuted)
 
 }
