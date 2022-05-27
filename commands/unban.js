@@ -23,13 +23,13 @@ module.exports.run = async(client, message, args) =>{
 
     message.guild.members.unban(user_id).then(() => {
         const unbanned = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("00FF00")
         .setDescription(`${client.success} _Successfully Unbanned ${mm.username}_`)
         message.channel.send(unbanned);
     }).catch((e) => {
       //  console.log(e)
         const failed = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("FF0000")
         .setDescription(`${client.fail} _Failed to unban ${mm.username}_`)
         message.channel.send(failed);
     })

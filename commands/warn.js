@@ -74,41 +74,8 @@ module.exports.run = async(client, message, args) =>  {
     if (curWrns >= 4) amtOfWarns = `${curWrns}th`
     
    const warned = new MessageEmbed()
-   .setColor(client.color)
-   .setDescription(`${client.success} _Warned ${mm.username || mm.user.username} | This is their ${amtOfWarns} warning_`)
-
-
-   const userLogs = require('../database/userlogs.json')
-
-   if (!userLogs[mm.id]) {
-       userLogs[mm.id] = {};
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-
-       })
-       if (!userLogs[mm.id][message.guild.id]) {
-           userLogs[mm.id][message.guild.id] = {};
-           fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-           
-           })
-       }
-   }
-
-   if (!userLogs[mm.id][message.guild.id].logs) {
-       userLogs[mm.id][message.guild.id] = {
-           logs: 0
-       };
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-           
-       })
-   }
-
-   userLogs[mm.id][message.guild.id].logs++
-
-
-      fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-           
-       })
-
+       .setColor("00FF00")
+   .setDescription(`${client.success} _Warned ${mm.username || mm.user.username} | Thier amount of warns: ${amtOfWarns}_`)
    message.channel.send(warned);
 
 

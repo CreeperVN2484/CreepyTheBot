@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
     const newPrefix = args[0];
     if (!newPrefix) {
         const curPrefix = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("0000FF")
         .setDescription(`Current prefix is: \`${curPref}\``)
         return message.channel.send(curPrefix);
     } else {
@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
             prefix: newPrefix
         };
         const setPrefx = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("00FF00")
         .setDescription(`${client.success} Prefix set to \`${newPrefix}\``)
         message.channel.send(setPrefx);
         fs.writeFile('./database/prefixes.json', JSON.stringify(pp), (err) => {

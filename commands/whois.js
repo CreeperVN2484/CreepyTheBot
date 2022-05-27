@@ -21,7 +21,7 @@ module.exports.run = async(client, message, args) =>{
         const wuser = message.mentions.users.last();
         const mUser = message.mentions.members.last();
         const embed = new MessageEmbed()
-            .setColor(client.color)
+            .setColor("0000FF")
             .setAuthor(wuser.username, wuser.displayAvatarURL())
             .setTitle(`User info for ${wuser.username}`)
             .addFields(
@@ -73,9 +73,8 @@ module.exports.run = async(client, message, args) =>{
         message.channel.send(embed)
     } else {
 
-//        if (message.mentions.users.last().id !== this.client.user.id || message.mentions.users.last().id === this.client.user.id) {
         const e = new MessageEmbed()
-            .setColor(client.color)
+            .setColor("0000FF")
             .setAuthor(message.author.tag, message.author.displayAvatarURL())
             .setTitle(`User info for ${message.author.username}`)
             .setThumbnail(message.author.displayAvatarURL())

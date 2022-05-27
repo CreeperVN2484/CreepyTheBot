@@ -14,7 +14,7 @@ module.exports.run = async(client, message, args) => {
     const owner = message.guild.ownerID
     const cato =        message.guild.channels.cache.filter(ch => ch.type === 'category').size
 let embed = new MessageEmbed()
-.setColor(client.color)
+    .setColor("0000FF")
 .setTitle(`${message.guild.name}`)
 .addField("**Owner:**", `<@${owner}>` , true)
 .addField("Region", message.guild.region, true)

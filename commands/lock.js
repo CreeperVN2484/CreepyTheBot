@@ -31,13 +31,13 @@ module.exports.config = {
         SEND_MESSAGES: false
     }).then(() => {
         const done = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("00FF00")
         .setDescription(`${client.success} _**${mm.name}** has been locked_`)
 
         message.channel.send(done)
     }).catch(() => {
         const failed = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("FF0000")
         .setDescription(`${client.fail} _Failed to lock **${mm.name}**_`)
 
         message.channel.send(failed)

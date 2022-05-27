@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
     }
 
    const warningsEmbed = new MessageEmbed()
-   .setColor(client.color)
+       .setColor("0000FF")
    .setDescription(`Warnings for **${mm.username}**: \n \n \`${require('../database/warns.json')[mm.id][message.guild.id].warns}\` Warnings found`)
 
    message.channel.send(warningsEmbed);

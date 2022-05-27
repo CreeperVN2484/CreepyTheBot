@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
     })
 
     const success = new MessageEmbed()
-        .setColor(client.color)
+        .setColor("00FF00")
         .setDescription(`${client.success} Set mute role to \`${mm.name}\``)
 
     message.channel.send(success);

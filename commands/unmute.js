@@ -9,7 +9,7 @@ module.exports.config = {
     guildOnly: true,
     group: 'moderation',
     botperms: ['EMBED_LINKS'],
-    description: "Mute a user so they cannot type",
+    description: "Unmute a user",
     usage: '.mute [@user] [time]',
     example: '.mute @Slayer 10m',
 }
@@ -24,12 +24,14 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const userInput = message.mentions.members.last() ? message.mentions.members.last() : args[0]
 
-    let mm;
+    
+
+    let mm
     try {
         if (userInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
     } catch {
 
-    }dsad
+    } dsad
     if (!mm) return message.channel.send(client.noMember);
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
@@ -58,15 +60,10 @@ module.exports.run = async (client, message, args) => {
 
     }
 
-    const Muted = new MessageEmbed()
+    const unmuted = new MessageEmbed()
         .setColor("00FF00")
-        .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ `)
+        .setDescription(`${client.success} _\`${mm.user.username}\` has been unmuted_ `)
 
-    mm.roles.add(muteRole).then(() => {
-        message.channel.send(Muted);
-        setTimeout(() => {
-            mm.roles.remove(muteRole)
-        }, ms(time))
-    })
+    mm.roles.remove(muteRole)
 
 }

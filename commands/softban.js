@@ -2,12 +2,12 @@ const { Client, Message, MessageEmbed, User } = require("discord.js");
 const fs = require('fs')
 
 module.exports.config = {
-    name: "softban",
-    aliases: ['soft-ban'],
+    name: "tempban",
+    aliases: ['temp-ban'],
     group: 'moderation',
-    description: "Softban a user",
-    usage: '.softban [@user] <reason>',
-    example: '.softban @Slayer Spamming messages'
+    description: "Tempban a user",
+    usage: '.tempban [@user] <reason>',
+    example: '.tempban @Slayer Spamming messages'
 }
 
 /**
@@ -33,46 +33,15 @@ module.exports.run = async(client, message, args) => {
 
     const reason = args.slice(1).join(' ') ? args.slice(1).join(' ') : "No reason given";
 
-    message.guild.members.ban(mm.id, {reason: reason, days: 7}).then(() => {
-        message.guild.members.unban(mm.id);
-        const userLogs = require('../database/userlogs.json')
-
-    if (!userLogs[mm.id]) {
-        userLogs[mm.id] = {};
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
- 
-        })
-        if (!userLogs[mm.id][message.guild.id]) {
-            userLogs[mm.id][message.guild.id] = {};
-            fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-            })
-        }
-    }
- 
-    if (!userLogs[mm.id][message.guild.id].logs) {
-        userLogs[mm.id][message.guild.id] = {
-            logs: 0
-        };
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-    }
- 
-    userLogs[mm.id][message.guild.id].logs++
- 
- 
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
+    message.guild.members.ban(mm.id, { reason: reason, days: 7 }).then(() => {
         const softBanned = new MessageEmbed()
-        .setColor(client.color)
-        .setDescription(`${client.success} _${mm.user.username} has been soft banned | ${reason}_`)
+            .setColor("00FF00")
+        .setDescription(`${client.success} _${mm.user.username} has been temp banned | ${reason}_`)
         message.channel.send(softBanned);
     })    .catch((e) => {
         console.log(e)
         const failed = new MessageEmbed()
-        .setColor(client.color)
+            .setColor("FF0000")
         .setDescription(`${client.fail} _Failed to ban ${mm.user.username}_`)
         message.channel.send(failed)
     })

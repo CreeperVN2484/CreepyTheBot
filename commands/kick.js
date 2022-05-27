@@ -45,45 +45,14 @@ module.exports.run = async(client, message, args) => {
 
    mm.kick(reason).then(() => {
 
-    const userLogs = require('../database/userlogs.json')
-
-    if (!userLogs[mm.id]) {
-        userLogs[mm.id] = {};
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
- 
-        })
-        if (!userLogs[mm.id][message.guild.id]) {
-            userLogs[mm.id][message.guild.id] = {};
-            fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-            })
-        }
-    }
- 
-    if (!userLogs[mm.id][message.guild.id].logs) {
-        userLogs[mm.id][message.guild.id] = {
-            logs: 0
-        };
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-    }
- 
-    userLogs[mm.id][message.guild.id].logs++
- 
- 
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-
        const kicked = new MessageEmbed()
-       .setColor(client.color)
+           .setColor("00FF00")
        .setDescription(`${client.success} _${mm.user.username} has been kicked_`)
        message.channel.send(kicked);
    }).catch(() => {
 
     const failed = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("FF0000")
     .setDescription(`${client.fail} _Failed to kick ${mm.user.username}_`)
 
        message.channel.send(failed);

@@ -45,11 +45,11 @@ guild.fetchInvites().then((invites) => {
       let e = new MessageEmbed()
       .setAuthor(message.author.tag, message.author.displayAvatarURL())
       .setDescription(replText)
-      .setColor(client.color)
+          .setColor("00FF00")
     message.reply(e);
     } catch (e){
     
-        message.channel.send("I cannot list all the invites as it is more than 2000 characters to write out.")
+        message.channel.send("Error! I cannot list all the invites as it is more than 2000 characters to write out.")
     }
 
     })

@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
 
     if (!client.commands.has(command)) {
         var cantFind = new MessageEmbed()
-            .setColor(client.color)
+            .setColor("FF0000")
             .setDescription(`${client.fail} No such command as \`${command}\``)
         // if (!client.commands.get(client.aliases.get(command))) {
         message.channel.send(cantFind);
@@ -48,25 +48,8 @@ module.exports.run = async (client, message, args) => {
         }
     }
 
-    const file = require('../database/enables.json');
-
-    if (!file[command]) {
-        file[command] = {}
-        fs.writeFile('./database/enables.json', JSON.stringify(file, null, 2), (err) => {
-
-        })
-    }
-
-    file[command][message.guild.id] = true;
-
-    fs.writeFile('./database/enables.json', JSON.stringify(file, null, 2), (err) => {
-        if (err) {
-
-        }
-    })
-
     let done = new MessageEmbed()
-        .setColor(client.color)
+        .setColor("00FF00")
         .setDescription(`${client.success} The ${command} command has been disabled`);
 
     message.channel.send(done);

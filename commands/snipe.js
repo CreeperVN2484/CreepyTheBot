@@ -15,7 +15,7 @@ module.exports.run = async(client, message, args) => {
     if (!msg) return message.channel.send(client.noSnipes);
 
     const embed = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("0000FF")
     .setAuthor(msg.author.username, msg.author.displayAvatarURL())
     .setDescription(msg.content)
     .setTimestamp()

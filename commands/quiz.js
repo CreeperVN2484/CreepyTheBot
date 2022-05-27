@@ -17,7 +17,7 @@ module.exports.run = async(client, message, args) => {
     };
     
     const mainEmbed = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("00FF00")
     .setDescription(item.question)
 
     message.channel.send(mainEmbed).then(() => {

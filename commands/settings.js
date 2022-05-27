@@ -36,7 +36,7 @@ module.exports.run = async(client, message, args) => {
 
 
     const em = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("0000FF")
     .setDescription(`Configuration settings for **${message.guild.name}** \n \n `)
     .addFields(
         {

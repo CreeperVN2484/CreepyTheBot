@@ -42,47 +42,8 @@ module.exports.run = async(client, message, args) =>{
 
     warns[mm.id][message.guild.id].warns -= amount;
 
-    const fs = require('fs');
-
-    fs.writeFile('./database/warns.json', JSON.stringify(warns, null, 2), (err) => {
-
-    })
-
-
-    const userLogs = require('../database/userlogs.json')
-
-    if (!userLogs[mm.id]) {
-        userLogs[mm.id] = {};
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
- 
-        })
-        if (!userLogs[mm.id][message.guild.id]) {
-            userLogs[mm.id][message.guild.id] = {};
-            fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-            })
-        }
-    }
- 
-    if (!userLogs[mm.id][message.guild.id].logs) {
-        userLogs[mm.id][message.guild.id] = {
-            logs: 0
-        };
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-    }
- 
-    userLogs[mm.id][message.guild.id].logs++
- 
- 
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-
-
     const delWarned = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("00FF00")
     .setDescription(`${client.success} Deleted \`${amount}\` warnings`)
 
     message.channel.send(delWarned);

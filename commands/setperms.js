@@ -93,7 +93,7 @@ module.exports.run = async(client, message, args) => {
     })
 
     const done = new MessageEmbed()
-    .setColor(client.color)
+        .setColor("00FF00")
     .setDescription(`${client.success} Permissions for \`${command}\` command is now \`${permission}\``)
 
     message.channel.send(done);

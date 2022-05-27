@@ -42,44 +42,13 @@ module.exports.run = async(client, message, args) => {
    if (mm.hasPermission('MANAGE_MESSAGES')) return message.channel.send(client.userstaff);
     }
 
-   message.guild.members.ban(mm.id, {reason: reason}).then(() => {
+    message.guild.members.ban(mm.id, { reason: reason }).then(() => {
 
-    const userLogs = require('../database/userlogs.json')
-
-    if (!userLogs[mm.id]) {
-        userLogs[mm.id] = {};
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
- 
-        })
-        if (!userLogs[mm.id][message.guild.id]) {
-            userLogs[mm.id][message.guild.id] = {};
-            fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-            })
-        }
-    }
- 
-    if (!userLogs[mm.id][message.guild.id].logs) {
-        userLogs[mm.id][message.guild.id] = {
-            logs: 0
-        };
-        fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-    }
- 
-    userLogs[mm.id][message.guild.id].logs++
- 
- 
-       fs.writeFile('./database/userlogs.json', JSON.stringify(userLogs), (err) => {
-            
-        })
-
-       const banned = new MessageEmbed()
-       .setColor('008000')
-       .setDescription(`${client.success} _${mm.user.username} has been banned_`)
-       message.channel.send(banned);
-   }).catch((e) => {
+        const banned = new MessageEmbed()
+            .setColor('008000')
+            .setDescription(`${client.success} _${mm.user.username} has been banned_`)
+        message.channel.send(banned);
+    }).catch((e) => {
     console.log(e)
     const failed = new MessageEmbed()
     .setColor('FF0000')

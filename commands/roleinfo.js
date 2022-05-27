@@ -18,7 +18,7 @@ module.exports.run = async(client, message, args) =>{
     let roleP = target.permissions.toArray().join(" ")
     if (roleP.length > 4) roleP = 'Too many to show'
 const embed = new MessageEmbed()
-.setColor(client.color)
+    .setColor("0000FF")
 .setAuthor(message.author.tag, message.author.displayAvatarURL())
 .setDescription(`Role info for: \`${target.name}\``)
 .addField("Role name:", `${target.name}`, true)
