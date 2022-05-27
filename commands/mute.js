@@ -60,12 +60,12 @@ module.exports.run = async (client, message, args) => {
     const Muted = new MessageEmbed()
         .setColor("00FF00")
         .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ `)
+    mm.roles.add(muteRole)
 
 
     if (time) {
         mm.roles.add(muteRole).then(() => {
             setTimeout(() => {
-                mm.roles.remove(muteRole)
             }, ms(time))
         }
 
