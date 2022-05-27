@@ -28,6 +28,7 @@ module.exports.run = async(client, message, args) => {
     if (mm.id === client.user.id) return message.channel.send(client.main);
 
     let muteRole = require("../database/muterole.json")[message.guild.id].role;
+    console.log(muteRole)
 
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
