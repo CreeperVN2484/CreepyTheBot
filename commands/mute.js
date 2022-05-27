@@ -34,13 +34,13 @@ module.exports.run = async (client, message, args) => {
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
 
-    let muteRole = require('../database/muterole.json')[message.guild.id].role;
-
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
     }
     const time = args[1];
     if (!time) return message.channel.send(client.main);
+
+    let muteRole = require('../database/muterole.json')[message.guild.id].role.toString();
 
     try {
         await message.guild.roles.fetch(muteRole)
