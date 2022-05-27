@@ -38,7 +38,6 @@ module.exports.run = async (client, message, args) => {
         return message.channel.send(client.noMuteRole);
     }
     const time = args[1];
-    if (!time) return message.channel.send(client.main);
 
     let muteRole = require('../database/muterole.json')[message.guild.id].role.toString();
 
@@ -62,11 +61,16 @@ module.exports.run = async (client, message, args) => {
         .setColor("00FF00")
         .setDescription(`${client.success} _\`${mm.user.username}\` has been muted_ `)
 
-    mm.roles.add(muteRole).then(() => {
-        message.channel.send(Muted);
-        setTimeout(() => {
-            mm.roles.remove(muteRole)
-        }, ms(time))
-    })
 
+    if (time) {
+        mm.roles.add(muteRole).then(() => {
+            setTimeout(() => {
+                mm.roles.remove(muteRole)
+            }, ms(time))
+        }
+
+        )
+    }
+
+    message.channel.send(Muted);
 }

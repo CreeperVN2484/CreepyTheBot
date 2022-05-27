@@ -10,8 +10,8 @@ module.exports.config = {
     group: 'moderation',
     botperms: ['EMBED_LINKS'],
     description: "Unmute a user",
-    usage: '.unmute [@user] [time]',
-    example: '.unmute @Slayer 10m',
+    usage: '.unmute [@user]',
+    example: '.unmute @Slayer',
 }
 
 /**
@@ -39,8 +39,8 @@ module.exports.run = async (client, message, args) => {
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
     }
-    const time = args[1];
-    if (!time) return message.channel.send(client.main);
+    const args = args[1];
+    if (args) return message.channel.send("No agrs needed");
 
     let muteRole = require('../database/muterole.json')[message.guild.id].role.toString();
 

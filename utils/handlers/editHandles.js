@@ -109,7 +109,7 @@ module.exports = async(client, message) => {
         }
 
         client.main = new MessageEmbed()
-            .setColor(client.color)
+            .setColor("0000FF")
             .setTitle(`Command: ${command.config.name}`)
             .setDescription(`**Description:** ${command.config.description} \n**Cooldown:** 3 second(s) ${command.config.aliases ? '\n' : ''}${command.config.aliases ? `**Aliases:** ${command.config.aliases.join(', ')}` : ''} \n  **Usage:** ${command.config.usage} \n **Example:** ${command.config.example || "None"}`)
     
