@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\commands",
+    "\\database",
+    "\\events",
+    "\\utils",
+    "\\utils\\structure"
   ],
-  "SelectedNode": "\\C:\\Users\\minec\\Source\\Repos\\CreepyTheBot",
+  "SelectedNode": "\\commands\\setmuterole.js",
   "PreviewInSolutionExplorer": false
 }

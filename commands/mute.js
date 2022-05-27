@@ -1,7 +1,6 @@
 const ms = require('ms')
 const { Client, Message, MessageEmbed } = require('discord.js');
 const fs = require('fs')
-const mr = require("../database/muterole.json")
 
 module.exports.config = {
     name: "mute",
@@ -28,7 +27,7 @@ module.exports.run = async(client, message, args) => {
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
 
-    let muteRole = mr [message.guild.id].role;
+    let muteRole = require("../database/muterole.json")[message.guild.id].role;
 
     if (!require('../database/muterole.json')[message.guild.id]) {
         return message.channel.send(client.noMuteRole);
