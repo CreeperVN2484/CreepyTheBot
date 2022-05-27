@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
         if (userInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
     } catch {
 
-    } dsad
+    }
     if (!mm) return message.channel.send(client.noMember);
 
     if (mm.id === client.user.id) return message.channel.send(client.main);
