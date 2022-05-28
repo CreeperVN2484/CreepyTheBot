@@ -9,20 +9,46 @@ module.exports.config = {
     description: "Shows a country's weather"
 }
 
-module.exports.run = async (client, message, args) => {
-    const command = args[0];
-    if (!command) {
-        return message.channel.send("Incorrect Args")
+exports.Weather = async function (location) {
+    if (!location) {
+        return { error: "No Location provided" }
     }
-
     else {
-        const pixel = require('pixel-api-wrapper')
-            let content = await pixel.Weather(`${command}`)
+        let content = await fetch(`https://pixel-api-production.up.railway.app/data/weather/?location=${location}`)
+
+        content = await content.json()
+        if (content.error) {
+            return content
+        }
+        else {
+            return content
+        }
+
+    }
+}
+
+module.exports.run = async (client, message, args) => {
+    const location = args[0];
+
+    if (!location) {
+        return { error: "No Location provided" }
+    }
+    else {
+        let content = await fetch(`https://pixel-api-production.up.railway.app/data/weather/?location=${location}`)
+
+        content = await content.json()
+        if (content.error) {
+            return content
+        }
+        else {
+            return content
+        }
+
+    }
 
         const say = new MessageEmbed()
              .setColor('008000')
             .setDescription(content)
 
         message.channel.send(say)
-    }
 }
