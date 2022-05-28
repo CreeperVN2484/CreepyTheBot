@@ -9,7 +9,7 @@ module.exports = async(client, message) => {
         prePrefix = await require('../database/prefixes.json')[message.guild.id].prefix;
 
     } else {
-        prePrefix = "."
+        prePrefix = require('../config/bot.json').prefix
     }
     const escapeRegex = require('../utils/structure/exports/escapeRegex').escapeRegex
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prePrefix)})\\s*`);
