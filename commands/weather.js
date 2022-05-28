@@ -52,12 +52,10 @@ module.exports.run = async (client, message, args) => {
   //      }
 
    // }
-    content = await content.json()
-    if (content.error) {
+
         const say = new MessageEmbed()
             .setColor('0000FF')
             .setDescription("Currently Disabled (API Broken)")
         message.channel.send(say)
-    }
-
 }
+
