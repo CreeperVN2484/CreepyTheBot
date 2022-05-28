@@ -29,7 +29,7 @@ exports.Weather = async function (location) {
 }
 
 module.exports.run = async (client, message, args) => {
-    const location = args[0];
+    const location = args[1];
 
     if (!location) {
         return { error: "No Location provided" }
@@ -40,13 +40,13 @@ module.exports.run = async (client, message, args) => {
         content = await content.json()
         if (content.error) {
             const say = new MessageEmbed()
-                .setColor('008000')
+                .setColor('0000FF')
                 .setDescription(content)
             message.channel.send(say)
         }
         else {
             const say = new MessageEmbed()
-                .setColor('008000')
+                .setColor('0000FF')
                 .setDescription(content)
             message.channel.send(say)
         }
