@@ -39,14 +39,12 @@ module.exports.run = async (client, message, args) => {
 
         content = await content.json()
         if (content.error) {
-            return content
             const say = new MessageEmbed()
                 .setColor('008000')
                 .setDescription(content)
             message.channel.send(say)
         }
         else {
-            return content
             const say = new MessageEmbed()
                 .setColor('008000')
                 .setDescription(content)
