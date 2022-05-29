@@ -33,8 +33,8 @@ module.exports.run = async (client, message, args) => {
                .setColor('0000FF')
                .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
                .setThumbnail(client.user.displayAvatarURL())
-               .setDescription(`Info:\n\nLocation: ${content.info.location}\nCountry: ${content.info.country}\n\nWeather:Tempurature: ${content.weather.temp_c}oC / ${content.weather.temp_f}oF\nFeel Like: ${content.weather.feels_c}oC / ${content.weather.feels_f}oF\nCurrent Condition: ${content.weather.condition}\nWind: ${content.weather.wind_kph}KM/H / ${content.weather.wind_mph}MPH\nHumidity:${content.weather.humidity}%`)
-              .setFooter(`$content.weather.icon`)
+               .setDescription(`Info:\nLocation: ${content.info.location}\nCountry: ${content.info.country}\n\nWeather:\nTempurature: ${content.weather.temp_c}oC / ${content.weather.temp_f}oF\nFeel Like: ${content.weather.feels_c}oC / ${content.weather.feels_f}oF\nCurrent Condition: ${content.weather.condition}\nWind: ${content.weather.wind_kph}KM/H / ${content.weather.wind_mph}MPH\nHumidity:${content.weather.humidity}%`)
+              .setImage(`$content.weather.icon`)
          return message.channel.send(say)
       }
 
