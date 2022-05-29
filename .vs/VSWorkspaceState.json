@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\commands"
+    "\\commands",
+    "\\config",
+    "\\database",
+    "\\events"
   ],
-  "SelectedNode": "\\commands\\delwarn.js",
+  "SelectedNode": "\\events\\message.js",
   "PreviewInSolutionExplorer": false
 }
