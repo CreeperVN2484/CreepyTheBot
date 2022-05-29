@@ -28,8 +28,9 @@ module.exports.run = async (client, message, args) => {
        }
        else {
            const say = new MessageEmbed()
-              .setColor('0000FF')
-              .setDescription(content)
+               .setColor('0000FF')
+               .setDescription(`Info:\n\nLocation: ${content.info.location}\nCountry: ${content.info.country}\n\nWeather:Tempurature: ${content.weather.temp_c}°C / ${content.weather.temp_f}°F\nFeel Like: ${content.weather.feels_c}°C / ${content.weather.feels_f}°F\nCurrent Condition: ${content.weather.condition}\nWind: ${content.weather.wind_kph}KM/H / ${content.weather.wind_mph}MPH\nHumidity:${content.weather.humidity}%`)
+              .setImage("https://cdn.weatherapi.com/weather/64x64/day/113.png")
          return message.channel.send(say)
       }
 
