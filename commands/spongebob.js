@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
         return message.channel.send(say)
     }
     else {
-        text = text.replace(/\s/g, '%20')
+        let text = text.replace(/\s/g, '%20')
         const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())

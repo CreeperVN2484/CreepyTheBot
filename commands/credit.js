@@ -4,7 +4,7 @@ const { MessageEmbed, Message, Client } = require("discord.js")
 module.exports.config = {
     name: "credit",
     description: 'Credit to people who contributed on me',
-    group: 'mics',
+    group: 'misc',
     usage: '.credit',
 }
 
