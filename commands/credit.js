@@ -1,6 +1,13 @@
 
 const { MessageEmbed, Message, Client } = require("discord.js")
 
+module.exports.config = {
+    name: "credit",
+    description: 'Credit to people who contributed on me',
+    group: 'mics',
+    usage: '.credit',
+}
+
 module.exports.run = async (client, message, args) => {
     const say = new MessageEmbed()
         .setColor('0000FF')
