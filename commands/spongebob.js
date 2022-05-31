@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
         const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-            .setDescription(`https://pixel-api-production.up.railway.app/image/spongebobburn/?text=${text}`)
+            .setImage(`https://pixel-api-production.up.railway.app/image/spongebobburn/?text=${text}`)
         return message.channel.send(say)
     }
 }
