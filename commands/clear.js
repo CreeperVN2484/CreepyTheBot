@@ -15,6 +15,7 @@ module.exports.run = async (client, message, args) => {
     if (!amount) return message.channel.send("No amount specified")
     if (amount > 100 || amount < 1) return message.channel.send("Invalid number! **Maximum 100**")
 
+    message.delete()
     message.channel.bulkDelete(amount).catch(err => {
         message.channel.send('Cannot delete messages older than 14 days!')
     })
@@ -22,7 +23,7 @@ module.exports.run = async (client, message, args) => {
     let msg = await message.channel.send(`Deleted \`${amount}\` messages`)
     setTimeout(() => {
         msg.delete()
-    }, 2000)
+    }, 10000)
 
 
 }
