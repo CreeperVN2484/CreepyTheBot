@@ -10,12 +10,16 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const amount = args[0];
+    const amount = parseInt(args[0])
     if (message) {
         await message.delete()
     }
 
-    const { size }  = await channel.bulkDelete(amount)
+    const msg = await message.channel.fetch({ limit: amount })
+    const { size } = msg
+
+    msg.forEach((message) => message.delete())
+
     message.channel.send(`Deleted ${size} messages`)
 
 
