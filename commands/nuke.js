@@ -14,12 +14,9 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.clone().then(channel => {
         channel.setPosition(message.channel.position)
-        const say = new MessageEmbed()
-            .setColor('00FF00')
-            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-            .setDescription(`Nuked by ${message.author.username}`)
-            .setImage(`https://i.gifer.com/6Ip.gif`).
-        message.channel.send(say)
+        message.channel.send(`Nuked by ${message.author.username}`)
+        const attachment = new Attachment('https://i.imgur.com/w3duR07.png');
+        message.channel.send(attachment)
         
     })
     message.channel.delete()
