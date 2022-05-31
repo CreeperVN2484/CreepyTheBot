@@ -12,13 +12,10 @@ module.exports.config = {
 
 module.exports.run = async (client, message, args) => {
 
-    message.channel.clone().then(channel => {
         channel.setPosition(message.channel.position)
         message.channel.send(`Nuked by ${message.author.username}`)
         const attachment = new Attachment('https://i.imgur.com/w3duR07.png');
         message.channel.send(attachment)
-        
-    })
-    message.channel.delete()
+        message.channel.delete()
 
 }
