@@ -20,11 +20,11 @@ module.exports.run = async (client, message, args) => {
         return message.channel.send(say)
     }
     else {
-        let text = text.replace(/\s/g, '%20')
+        let newtext = text.replace(/\s/g, '%20')
         const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-            .setImage(`https://pixel-api-production.up.railway.app/image/spongebobburn/?text=${text}`)
+            .setImage(`https://pixel-api-production.up.railway.app/image/spongebobburn/?text=${newtext}`)
         return message.channel.send(say)
     }
 }
