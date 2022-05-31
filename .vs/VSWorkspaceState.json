@@ -4,8 +4,11 @@
     "\\commands",
     "\\config",
     "\\database",
-    "\\events"
+    "\\events",
+    "\\scrap",
+    "\\utils",
+    "\\utils\\handlers"
   ],
-  "SelectedNode": "\\commands\\spongebob.js",
+  "SelectedNode": "\\commands\\clear.js",
   "PreviewInSolutionExplorer": false
 }
