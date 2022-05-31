@@ -11,7 +11,7 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const text = args[0];
+    const text = args.join(" ");
     if (!text) {
         const say = new MessageEmbed()
             .setColor('FF0000')
