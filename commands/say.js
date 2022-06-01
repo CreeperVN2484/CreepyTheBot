@@ -3,7 +3,7 @@ const { MessageEmbed, Intents } = require('discord.js');
 module.exports.config = {
     name: "say",
     description: 'clone the message, resend and delete user message',
-    group: 'mics',
+    group: 'misc',
     usage: '.say <message>',
     example: '.quiz something is wrong',
 }
