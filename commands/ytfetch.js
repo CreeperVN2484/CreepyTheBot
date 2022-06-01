@@ -28,5 +28,5 @@ module.exports.run = async (client, message, args) => {
         .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
         .setFooter(`content.thumbnail`)
 
-    return message.channel.send(`${say}`"Click on the title to watch the video")
+    message.channel.send(say)
 }
