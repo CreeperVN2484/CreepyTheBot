@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
          message.channel.send("No video name provided")
     }
 
-    let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video.replaceAll(" ", "%20")}`)
+    let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video.replace(/\s/g, '%20')}`)
     content = await a.json()
 
     const row = new MessageActionRow()
