@@ -11,8 +11,8 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const nvideo = args[0];
-    const video = nvideo.replace(/\s/g, '%20')
+    const nvideo = args.join(" ");
+    const video = nvideo.replace(" ", "%20")
     if (!video) {
          message.channel.send("No video name provided")
     }
