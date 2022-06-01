@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
     
     const mainEmbed = new MessageEmbed()
         .setColor("00FF00")
-    .setDescription(`${quiz.riddle}`)
+    .setDescription(`Quiz: ${quiz.riddle}`)
 
     message.channel.send(mainEmbed).then(() => {
         message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
