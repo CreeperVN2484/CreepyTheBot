@@ -11,12 +11,13 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const video = args[0];
+    const nvideo = args[0];
+    const video = nvideo.replace(/\s/g, '%20')
     if (!video) {
          message.channel.send("No video name provided")
     }
 
-    let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video.replace(/\s/g, '%20')}`)
+    let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
     content = await a.json()
 
     const row = new MessageActionRow()
