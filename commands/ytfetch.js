@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch')
 
 module.exports.config = {
@@ -20,20 +20,13 @@ module.exports.run = async (client, message, args) => {
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
     content = await a.json()
 
-    const row = new MessageActionRow()
-        .addComponents(
-            new MessageButton()
-                .setLabel('Go to the video')
-                .setStyle('LINK')
-                .setURL(`content.video`)
-    );
-
     const say = new MessageEmbed()
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
+        .setURL(`${content.video}`)
         .setTitle("**Video Found!**")
         .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
         .setFooter(`content.thumbnail`)
 
-    await interaction.reply({ ephemeral: true, embeds: [say], components: [row] });
+    return message.channel.send(`${say}`"Click on the title to watch the video")
 }
