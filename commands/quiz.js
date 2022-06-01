@@ -10,7 +10,8 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const quiz = await fetch(`https://pixel-api-production.up.railway.app/fun/riddle`)
+    const riddle = await fetch(`https://pixel-api-production.up.railway.app/fun/riddle`)
+    const quiz = await riddle.json()
     const filter = response => {
         return quiz.answer.some(answer => answer.toLowerCase() === response.content.toLowerCase());
     };
