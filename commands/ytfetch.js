@@ -1,4 +1,4 @@
-const { MessageEmbed, Message, Client } = require("discord.js")
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 module.exports.config = {
     name: "ytfetch",
@@ -12,7 +12,7 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const video = args[0];
     if (!video) {
-        return { error: "no video name provided" }
+         message.channel.send("No video name provided")
     }
 
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video.replaceAll(" ", "%20")}`)
@@ -21,9 +21,9 @@ module.exports.run = async (client, message, args) => {
     const row = new MessageActionRow()
         .addComponents(
             new MessageButton()
-                .setCustomId('primary')
-                .setLabel('Primary')
-                .setStyle('PRIMARY'),
+                .setLabel('Go to the video')
+                .setStyle('LINK')
+                .setURL(`content.video`)
     );
 
     const say = new MessageEmbed()
