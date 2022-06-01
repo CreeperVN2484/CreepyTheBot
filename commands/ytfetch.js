@@ -1,10 +1,11 @@
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const fetch = require('node-fetch')
 
 module.exports.config = {
     name: "ytfetch",
     aliases: ['yt'],
     cooldown: 10,
-    group: "mics",
+    group: "misc",
     usage: '.ytfetch',
     description: "Fetch for youtube videos"
 }
