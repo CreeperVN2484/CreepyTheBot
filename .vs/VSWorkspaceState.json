@@ -7,8 +7,9 @@
     "\\events",
     "\\scrap",
     "\\utils",
-    "\\utils\\handlers"
+    "\\utils\\handlers",
+    "\\utils\\structure"
   ],
-  "SelectedNode": "\\commands\\clear.js",
+  "SelectedNode": "\\commands\\abandon.js",
   "PreviewInSolutionExplorer": false
 }

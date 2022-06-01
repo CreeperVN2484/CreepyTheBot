@@ -2,18 +2,18 @@
 const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
-    name: "delete",
-    aliases: ['del'],
-    cooldown: 20,
+    name: "triggered",
+    aliases: ['trigg'],
+    cooldown: 10,
     group: "fun",
-    usage: '.delete',
-    description: "Delete.. but delete what?"
+    usage: '.triggered',
+    description: "Your triggered"
 }
 module.exports.run = async (client, message, args) => {
     let avatar = message.author.displayAvatarURL()
     const say = new MessageEmbed()
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-        .setImage(`https://pixel-api-production.up.railway.app/image/trash/?image=${avatar}`)
+        .setImage(`https://pixel-api-production.up.railway.app/image/triggered/?image=${avatar}`)
     return message.channel.send(say)
 }

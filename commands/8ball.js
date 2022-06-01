@@ -2,18 +2,20 @@
 const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
-    name: "delete",
-    aliases: ['del'],
-    cooldown: 20,
+    name: "8ball",
+    aliases: ['8b'],
+    cooldown: 10,
     group: "fun",
-    usage: '.delete',
-    description: "Delete.. but delete what?"
+    usage: '.8ball',
+    description: "The **+`Magic`** 8 Ball"
 }
 module.exports.run = async (client, message, args) => {
-    let avatar = message.author.displayAvatarURL()
+    let content = await fetch(`https://pixel-api-production.up.railway.app/fun/8ball`)
+    ncontent = await content.json()
+
     const say = new MessageEmbed()
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-        .setImage(`https://pixel-api-production.up.railway.app/image/trash/?image=${avatar}`)
+        .setDescription(`${ncontent.reply}`)
     return message.channel.send(say)
 }

@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
                 message.channel.send(`${collected.first().author} got the correct answer first!`);
             })
             .catch(() => {
-                message.channel.send(`The answer is ${quiz.answer}.Nobody got the answer this time.`);
+                message.channel.send(`The answer is ${quiz.answer} .Nobody got the right answer.`);
             });
     });
  }
