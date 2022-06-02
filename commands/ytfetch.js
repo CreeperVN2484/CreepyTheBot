@@ -21,17 +21,14 @@ module.exports.run = async (client, message, args) => {
     content = await a.json()
     contentvideo = `${content.video}`
 
-    if (contentvideo = "undefined") {
-        return message.channel.send({ content: "No video found" })
-    }
-
-    const row = new MessageActionRow()
-        .addComponents(
-            new MessageButton()
-                .setLabel('Go to video')
-                .setStyle('LINK')
-                .setURL(`${content.video}`)
-        );
+    try {
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setLabel('Go to video')
+                    .setStyle('LINK')
+                    .setURL(`${content.video}`)
+            );
 
         const say = new MessageEmbed()
             .setColor('00FF00')
@@ -40,5 +37,8 @@ module.exports.run = async (client, message, args) => {
             .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
             .setFooter(`content.thumbnail`)
 
-        message.channel.send({ embeds: [say] })
+        await interaction.reply({ embeds: [embed], components: [row] });
+    } catch (err) {
+        message.channel.send({ content: "Video not found" })
+    }
 }
