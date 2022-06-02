@@ -10,5 +10,5 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     let text = args.join(" ");
     message.delete();
-    message.channel.send({ embeds: [text] });
+    message.channel.send({ content: text });
 }  
