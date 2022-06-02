@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
 const fetch = require('node-fetch')
 
 module.exports.config = {
@@ -19,18 +19,26 @@ module.exports.run = async (client, message, args) => {
 
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
     content = await a.json()
+    contentvideo = `${content.video}`
 
-    try {
+    if (!contentvideo) {
+        message.channel.send({ content: "No video found" })
+    }
+
+    const row = new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+                .setLabel('Go to video')
+                .setStyle('LINK')
+                .setURL(`${content.video}`)
+        );
+
         const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-            .setURL(`${content.video}`)
             .setTitle("**Video Found!**")
             .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
             .setFooter(`content.thumbnail`)
 
         message.channel.send({ embeds: [say] })
-    } catch (err) {
-        message.channel.send({ content: "No video found" })
-    }
 }
