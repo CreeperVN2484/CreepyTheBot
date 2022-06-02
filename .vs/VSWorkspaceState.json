@@ -2,13 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\commands",
-    "\\config",
-    "\\database",
-    "\\events",
     "\\scrap",
+    "\\scrap\\code",
+    "\\scrap\\samples",
     "\\utils",
     "\\utils\\handlers",
-    "\\utils\\structure"
+    "\\utils\\schemas",
+    "\\utils\\structure",
+    "\\utils\\structure\\exports"
   ],
   "SelectedNode": "\\commands\\ytfetch.js",
   "PreviewInSolutionExplorer": false

@@ -21,6 +21,10 @@ module.exports.run = async (client, message, args) => {
     content = await a.json()
     contentvideo = `${content.video}`
 
+    if (contentvideo === "undefined") {
+        message.channel.send({ content: "Video not found" })
+    }
+
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -34,7 +38,9 @@ module.exports.run = async (client, message, args) => {
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setTitle("**Video Found!**")
             .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
+            .setImage(`${content.thumbnail}`)
 
 
-        message.channel.send({ embeds: [say], components: [row] });
+    message.channel.send({ embeds: [say], components: [row] });
+
 }
