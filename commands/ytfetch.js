@@ -34,7 +34,7 @@ module.exports.run = async (client, message, args) => {
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setTitle("**Video Found!**")
             .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
-            .setImage(`content.thumbnail`)
+            .setThumbnail(`content.thumbnail`)
 
         message.channel.send({ embeds: [say], components: [row] });
 }
