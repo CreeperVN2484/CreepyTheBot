@@ -20,12 +20,7 @@ module.exports.run = async (client, message, args) => {
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
     content = await a.json()
 
-    let err = (`${ content.error }`)
-    
-    if (content.hasOwnProperty(err)) {
-        message.channel.send({ content: "Error! Video not found" })
-    }
-    else {
+    try {
         const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
@@ -35,5 +30,7 @@ module.exports.run = async (client, message, args) => {
             .setFooter(`content.thumbnail`)
 
         message.channel.send({ embeds: [say] })
+    } catch (err) {
+        message.channel.send({ content: "No video found" })
     }
 }
