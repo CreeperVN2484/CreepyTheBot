@@ -20,7 +20,9 @@ module.exports.run = async (client, message, args) => {
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
     content = await a.json()
 
-    if (a.hasOwnProperty(error)) {
+    let err = (`${ content.error }`)
+    
+    if (content.hasOwnProperty(err)) {
         message.channel.send({ content: "Error! Video not found" })
     }
     else {
