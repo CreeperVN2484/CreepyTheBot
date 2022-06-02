@@ -18,21 +18,21 @@ module.exports.run = async (client, message, args) => {
             .setColor('FF0000')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription("No text provided (Panik1)")
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
     if (!panik2) {
         const say = new MessageEmbed()
             .setColor('FF0000')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription("No text provided (Panik2)")
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
     if (!kalm) {
         const say = new MessageEmbed()
             .setColor('FF0000')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription("No text provided (Panik1)")
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
     else {
         npanik1 = panik1.replace(/\s/g, '%20')
@@ -43,6 +43,6 @@ module.exports.run = async (client, message, args) => {
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setImage(`https://pixel-api-production.up.railway.app/image/panik/?panik1=${npanik1}&kalm=${nkalm}&panik2=${npanik2}`)
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
-}
+}  

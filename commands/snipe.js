@@ -10,15 +10,15 @@ module.exports.config = {
     guildOnly: true
 }
 
-module.exports.run = async(client, message, args) => {
+module.exports.run = async (client, message, args) => {
     const msg = await client.snipes.get(message.channel.id);
-    if (!msg) return message.channel.send(client.noSnipes);
+    if (!msg) return message.channel.send({ embeds: [client.noSnipes] });
 
     const embed = new MessageEmbed()
         .setColor("0000FF")
-    .setAuthor(msg.author.username, msg.author.displayAvatarURL())
-    .setDescription(msg.content)
-    .setTimestamp()
+        .setAuthor(msg.author.username, msg.author.displayAvatarURL())
+        .setDescription(msg.content)
+        .setTimestamp()
 
-    message.channel.send(embed);
-}
+    message.channel.send({ embeds: [embed] });
+}  

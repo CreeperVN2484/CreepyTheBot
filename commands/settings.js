@@ -2,14 +2,14 @@ const { MessageEmbed } = require("discord.js")
 
 module.exports.config = {
     name: "settings",
-   // aliases: ['settings'],
+    // aliases: ['settings'],
     group: 'management',
     description: "View all configuration settings",
     usage: '.config',
     example: '.config'
 }
 
-module.exports.run = async(client, message, args) => {
+module.exports.run = async (client, message, args) => {
 
     let modLogsChannel = 'None';
 
@@ -37,30 +37,30 @@ module.exports.run = async(client, message, args) => {
 
     const em = new MessageEmbed()
         .setColor("0000FF")
-    .setDescription(`Configuration settings for **${message.guild.name}** \n \n `)
-    .addFields(
-        {
-            name: 'Mod logs',
-            value: modLogsChannel
-            , inline: true
-        },
-        {
-            name: 'Mute role',
-            value: mRole,
-            inline: true
-        },
-        {
-            name: 'Server prefix',
-            value: '`'+ serverPrefix + '`',
-            inline: true
-        },
-        {
-            name: 'Anti bot',
-            value: anti_bot,
-            inline: true
-        }
-    )
+        .setDescription(`Configuration settings for **${message.guild.name}** \n \n `)
+        .addFields(
+            {
+                name: 'Mod logs',
+                value: modLogsChannel
+                , inline: true
+            },
+            {
+                name: 'Mute role',
+                value: mRole,
+                inline: true
+            },
+            {
+                name: 'Server prefix',
+                value: '`' + serverPrefix + '`',
+                inline: true
+            },
+            {
+                name: 'Anti bot',
+                value: anti_bot,
+                inline: true
+            }
+        )
 
-    message.channel.send(em)
+    message.channel.send({ embeds: [{ embeds: [em] }] })
 
-}
+}    

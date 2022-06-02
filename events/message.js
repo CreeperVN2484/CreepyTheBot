@@ -1,7 +1,6 @@
-
 const { Client, Message, MessageEmbed } = require('discord.js');
 
-module.exports = async(client, message) => {
+module.exports = async (client, message) => {
     if (message.author.bot) return;
 
     var prePrefix;
@@ -13,6 +12,6 @@ module.exports = async(client, message) => {
     }
     const escapeRegex = require('../utils/structure/exports/escapeRegex').escapeRegex
     const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(prePrefix)})\\s*`);
-	if (!prefixRegex.test(message.content)) return;
+    if (!prefixRegex.test(message.content)) return;
 
-}
+}  

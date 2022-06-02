@@ -16,31 +16,31 @@ const file = require('../database/warns.json')
 module.exports.run = async (client, message, args) => {
     const userInput = message.mentions.users.last() ? message.mentions.users.last() : args[0]
 
-    if (!userInput) return message.channel.send(client.main);
+    if (!userInput) return message.channel.send({ embeds: [client.main] });
 
-    let mm ;
+    let mm;
     try {
-   if (userInput === args[0]) mm = await client.users.fetch(args[0]); else mm = await message.mentions.users.last();
+        if (userInput === args[0]) mm = await client.users.fetch(args[0]); else mm = await message.mentions.users.last();
     } catch {
 
     }
-   if (!mm) return message.channel.send(client.noMember);
-   if (mm.id === client.user.id) return message.channel.send(client.main)
+    if (!mm) return message.channel.send({ embeds: [client.noMember] });
+    if (mm.id === client.user.id) return message.channel.send({ embeds: [client.main] })
 
     if (!file[mm.id]) {
         try {
-        if (!file[mm.id][message.guild.id]) {
-            return message.channel.send(client.userNoWarns);
+            if (!file[mm.id][message.guild.id]) {
+                return message.channel.send({ embeds: [client.userNoWarns] });
+            }
+        } catch {
+
         }
-    } catch {
-        
-    }
-        return message.channel.send(client.userNoWarns);
+        return message.channel.send({ embeds: [client.userNoWarns] });
     }
 
-   const warningsEmbed = new MessageEmbed()
-       .setColor("0000FF")
-   .setDescription(`Warnings for **${mm.username}**: \n \n \`${require('../database/warns.json')[mm.id][message.guild.id].warns}\` Warnings found`)
+    const warningsEmbed = new MessageEmbed()
+        .setColor("0000FF")
+        .setDescription(`Warnings for **${mm.username}**: \n \n \`${require('../database/warns.json')[mm.id][message.guild.id].warns}\` Warnings found`)
 
-   message.channel.send(warningsEmbed);
-}
+    message.channel.send({ embeds: [warningsEmbed] });
+}  

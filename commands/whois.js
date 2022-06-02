@@ -7,7 +7,7 @@ module.exports.config = {
     botperms: ['EMBED_LINKS'],
     group: 'misc'
 }
-const {MessageEmbed, Client, Message} = require('discord.js')
+const { MessageEmbed, Client, Message } = require('discord.js')
 
 /**
  * 
@@ -16,7 +16,7 @@ const {MessageEmbed, Client, Message} = require('discord.js')
  * @param {*} args 
  */
 
-module.exports.run = async(client, message, args) =>{
+module.exports.run = async (client, message, args) => {
     if (message.mentions.users.last() /*|| message.mentions.users.last().id === client.user.id*/) {
         const wuser = message.mentions.users.last();
         const mUser = message.mentions.members.last();
@@ -65,12 +65,12 @@ module.exports.run = async(client, message, args) =>{
                     value: mUser.roles.cache.map(role => `<@&${role.id}>`),
                     inline: true
                 }, {
-                    name: "Status",
-                    value: '`'+wuser.presence.status.toUpperCase() + '`',
-                    inline: true
-                }
+                name: "Status",
+                value: '`' + wuser.presence.status.toUpperCase() + '`',
+                inline: true
+            }
             )
-        message.channel.send(embed)
+        message.channel.send({ embeds: [embed] })
     } else {
 
         const e = new MessageEmbed()
@@ -84,10 +84,10 @@ module.exports.run = async(client, message, args) =>{
                     value: message.author.tag,
                     inline: true
                 }, {
-                    name: 'ID',
-                    value: message.author.id,
-                    inline: true
-                },
+                name: 'ID',
+                value: message.author.id,
+                inline: true
+            },
                 {
                     name: 'Is bot',
                     value: message.author.bot,
@@ -118,12 +118,12 @@ module.exports.run = async(client, message, args) =>{
                     value: message.member.roles.cache.map(role => `<@&${role.id}>`),
                     inline: true
                 }, {
-                    name: "Status",
-                    value: '`'+message.author.presence.status.toUpperCase() + '`',
-                    inline: true
-                }
+                name: "Status",
+                value: '`' + message.author.presence.status.toUpperCase() + '`',
+                inline: true
+            }
             )
         //    }
-        message.channel.send(e)
+        message.channel.send({ embeds: [e] })
     }
-}
+}  

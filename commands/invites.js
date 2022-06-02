@@ -1,5 +1,5 @@
 const { Client, Message } = require("discord.js")
-const {MessageEmbed} = require('discord.js')
+const { MessageEmbed } = require('discord.js')
 
 
 module.exports.config = {
@@ -18,40 +18,40 @@ module.exports.config = {
  * @param {*} args 
  */
 
-module.exports.run = async(client, message, args) => {
-const { guild } = message
+module.exports.run = async (client, message, args) => {
+    const { guild } = message
 
-guild.fetchInvites().then((invites) => {
-    const inviteCount = {}
+    guild.fetchInvites().then((invites) => {
+        const inviteCount = {}
 
-    invites.forEach((invite) => {
-        const { uses, inviter } = invite
-        const { username, discriminator } = inviter
+        invites.forEach((invite) => {
+            const { uses, inviter } = invite
+            const { username, discriminator } = inviter
 
-        const name = `${username}#${discriminator}`
+            const name = `${username}#${discriminator}`
 
-        inviteCount[name] = (inviteCount[name] || 0) + uses
+            inviteCount[name] = (inviteCount[name] || 0) + uses
+        })
+
+        let replText = 'Invites:'
+
+
+
+        for (const invite in inviteCount) {
+            const count = inviteCount[invite]
+            replText += `\n${invite} has  invited ${count} member(s)`
+        }
+        try {
+            let e = new MessageEmbed()
+                .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                .setDescription(replText)
+                .setColor("00FF00")
+            message.reply({ embeds: [e] });
+        } catch (e) {
+
+            message.channel.send({ content: "Error! I cannot list all the invites as it is more than 2000 characters to write out." })
+        }
+
     })
 
-    let replText = 'Invites:'
-
-     
-
-    for (const invite in inviteCount) {
-        const count = inviteCount[invite]
-        replText += `\n${invite} has  invited ${count} member(s)`
-    }
-    try {
-      let e = new MessageEmbed()
-      .setAuthor(message.author.tag, message.author.displayAvatarURL())
-      .setDescription(replText)
-          .setColor("00FF00")
-    message.reply(e);
-    } catch (e){
-    
-        message.channel.send("Error! I cannot list all the invites as it is more than 2000 characters to write out.")
-    }
-
-    })
-
-}
+}  

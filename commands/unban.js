@@ -10,13 +10,13 @@ module.exports.config = {
     example: '.unban 812420747136860241'
 }
 
-module.exports.run = async(client, message, args) =>{ 
+module.exports.run = async (client, message, args) => {
     const user_id = args[0];
-    if (!user_id) return message.channel.send(client.main);
+    if (!user_id) return message.channel.send({ embeds: [client.main] });
     try {
         client.users.fetch(user_id)
     } catch {
-       return message.channel.send(client.noUser);
+        return message.channel.send({ embeds: [client.noUser] });
     }
 
     const mm = await client.users.fetch(user_id)
@@ -24,13 +24,13 @@ module.exports.run = async(client, message, args) =>{
     message.guild.members.unban(user_id).then(() => {
         const unbanned = new MessageEmbed()
             .setColor("00FF00")
-        .setDescription(`${client.success} _Successfully Unbanned ${mm.username}_`)
-        message.channel.send(unbanned);
+            .setDescription(`${client.success} _Successfully Unbanned ${mm.username}_`)
+        message.channel.send({ embeds: [unbanned] });
     }).catch((e) => {
-      //  console.log(e)
+        //  console.log(e)
         const failed = new MessageEmbed()
             .setColor("FF0000")
-        .setDescription(`${client.fail} _Failed to unban ${mm.username}_`)
-        message.channel.send(failed);
+            .setDescription(`${client.fail} _Failed to unban ${mm.username}_`)
+        message.channel.send({ embeds: [failed] });
     })
-}
+}  

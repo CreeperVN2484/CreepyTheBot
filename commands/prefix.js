@@ -1,4 +1,4 @@
-const pp  = require('../database/prefixes.json');
+const pp = require('../database/prefixes.json');
 const fs = require('fs');
 const { MessageEmbed } = require("discord.js");
 
@@ -25,20 +25,20 @@ module.exports.run = async (client, message, args) => {
     if (!newPrefix) {
         const curPrefix = new MessageEmbed()
             .setColor("0000FF")
-        .setDescription(`Current prefix is: \`${curPref}\``)
-        return message.channel.send(curPrefix);
+            .setDescription(`Current prefix is: \`${curPref}\``)
+        return message.channel.send({ embeds: [curPrefix] });
     } else {
         pp[message.guild.id] = {
             prefix: newPrefix
         };
         const setPrefx = new MessageEmbed()
             .setColor("00FF00")
-        .setDescription(`${client.success} Prefix set to \`${newPrefix}\``)
-        message.channel.send(setPrefx);
+            .setDescription(`${client.success} Prefix set to \`${newPrefix}\``)
+        message.channel.send({ embeds: [setPrefx] });
         fs.writeFile('./database/prefixes.json', JSON.stringify(pp), (err) => {
-            if (err){
+            if (err) {
 
             }
         })
     }
-}
+}  

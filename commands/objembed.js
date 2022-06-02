@@ -7,17 +7,17 @@ module.exports.config = {
     example: '.objembed { "title": "bot", "text": "Check out The bot", "description": "Description", "color": "0x00ff00" }'
 }
 
-module.exports.run = async(client, message, args) => {
-    if (!args.length) return message.channel.send(client.main)
+module.exports.run = async (client, message, args) => {
+    if (!args.length) return message.channel.send({ embeds: [client.main] })
     try {
-        const json  = JSON.parse(args.join(' '))
+        const json = JSON.parse(args.join(' '))
 
-        const {text = ''} = json
+        const { text = '' } = json
 
         message.channel.send(text, {
             embed: json
         })
-    } catch(e) {
-        message.channel.send(`Error: ${e.message}`)
+    } catch (e) {
+        message.channel.send({ content: `Error: ${e.message}` })
     }
-}
+}  

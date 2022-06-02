@@ -7,8 +7,8 @@ module.exports.config = {
     description: "Ping command"
 }
 
-module.exports.run = async(client, message, args) => {
-    let msg = await message.channel.send('Pinging..');
+module.exports.run = async (client, message, args) => {
+    let msg = await message.channel.send({ content: 'Pinging..' });
 
-    msg.edit(`Pong! Your ping is \`${msg.createdTimestamp - message.createdTimestamp}\`ms ||| Discord API latency is \`${client.ws.ping}\`ms||`)
-}
+    msg.edit({ content: `Pong! Your ping is \`${msg.createdTimestamp - message.createdTimestamp}\`ms ||| Discord API latency is \`${client.ws.ping}\`ms||` })
+}  

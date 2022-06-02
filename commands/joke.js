@@ -12,9 +12,9 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     let content = await fetch(`https://pixel-api-production.up.railway.app/fun/joke`)
     content = await content.json()
-        const say = new MessageEmbed()
-            .setColor('00FF00')
-            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-            .setDescription(`${content.joke}`)
-        return message.channel.send(say)
-}
+    const say = new MessageEmbed()
+        .setColor('00FF00')
+        .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
+        .setDescription(`${content.joke}`)
+    return message.channel.send({ embeds: [say] })
+}  

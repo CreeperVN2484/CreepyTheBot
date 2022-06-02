@@ -16,5 +16,5 @@ module.exports.run = async (client, message, args) => {
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setDescription(`${content.fact}`)
-    return message.channel.send(say)
-}
+    return message.channel.send({ embeds: [say] })
+}  

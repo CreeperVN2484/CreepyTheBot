@@ -30,12 +30,12 @@ module.exports.run = async (client, message, args) => {
     } catch {
 
     }
-    if (!mm) return message.channel.send(client.noMember);
+    if (!mm) return message.channel.send({ embeds: [client.noMember] });
 
-    if (mm.id === client.user.id) return message.channel.send(client.main);
+    if (mm.id === client.user.id) return message.channel.send({ embeds: [client.main] });
 
     if (!require('../database/muterole.json')[message.guild.id]) {
-        return message.channel.send(client.noMuteRole);
+        return message.channel.send({ embeds: [client.noMuteRole] });
     }
     const time = args[1];
 
@@ -44,14 +44,14 @@ module.exports.run = async (client, message, args) => {
     try {
         await message.guild.roles.fetch(muteRole)
     } catch {
-        return message.channel.send(this.muteRoleInvalid)
+        return message.channel.send({ embeds: [this.muteRoleInvalid] })
     }
     let mRoleFetch = await message.guild.roles.fetch(muteRole);
 
 
     try {
         if (mRoleFetch.position >= message.guild.me.roles.highest.position) {
-            return message.channel.send(client.roleHigherThanMe)
+            return message.channel.send({ embeds: [client.roleHigherThanMe] })
         }
     } catch {
 
@@ -73,5 +73,5 @@ module.exports.run = async (client, message, args) => {
         )
     }
 
-    message.channel.send(Muted);
-}
+    message.channel.send({ embeds: [Muted] });
+}  

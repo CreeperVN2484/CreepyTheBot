@@ -23,34 +23,34 @@ module.exports.config = {
  * @param {*} args 
  */
 
-module.exports.run = async(client, message, args) =>  {
+module.exports.run = async (client, message, args) => {
     const file = require('../database/warns.json');
     const uInput = message.mentions.members.last() ? message.mentions.members.last() : args[0];
 
-    if (!uInput) return message.channel.send(client.main)
+    if (!uInput) return message.channel.send({ embeds: [client.main] })
 
-    let mm ;
+    let mm;
     try {
-    if (uInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
+        if (uInput === args[0]) mm = await message.guild.members.fetch(args[0]); else mm = await message.mentions.members.last();
     } catch {
     }
-  
-   if (!mm) return message.channel.send(client.noMember);
 
-   if (mm.id === client.user.id) return message.channel.send(client.main);
+    if (!mm) return message.channel.send({ embeds: [client.noMember] });
 
-   if (mm.hasPermission("MANAGE_MESSAGES")) return message.channel.send(client.userstaff);
+    if (mm.id === client.user.id) return message.channel.send({ embeds: [client.main] });
+
+    if (mm.permissions.has("MANAGE_MESSAGES")) return message.channel.send({ embeds: [client.userstaff] });
 
 
-   if (!file[mm.id]) {
-       file[mm.id] = {}
-       fs.writeFile('./database/warns.json', JSON.stringify(file, null, 2), (err) => {
+    if (!file[mm.id]) {
+        file[mm.id] = {}
+        fs.writeFile('./database/warns.json', JSON.stringify(file, null, 2), (err) => {
 
-    })
+        })
     }
 
     if (!file[mm.id][message.guild.id]) {
-        file[mm.id][message.guild.id]  ={}
+        file[mm.id][message.guild.id] = {}
     }
     fs.writeFile('./database/warns.json', JSON.stringify(file, null, 2), (err) => {
 
@@ -72,11 +72,11 @@ module.exports.run = async(client, message, args) =>  {
     if (curWrns === 2) amtOfWarns = '2nd'
     if (curWrns === 3) amtOfWarns = '3rd'
     if (curWrns >= 4) amtOfWarns = `${curWrns}th`
-    
-   const warned = new MessageEmbed()
-       .setColor("00FF00")
-   .setDescription(`${client.success} _Warned ${mm.username || mm.user.username} | Thier amount of warns: ${amtOfWarns}_`)
-   message.channel.send(warned);
+
+    const warned = new MessageEmbed()
+        .setColor("00FF00")
+        .setDescription(`${client.success} _Warned ${mm.username || mm.user.username} | Thier amount of warns: ${amtOfWarns}_`)
+    message.channel.send({ embeds: [warned] });
 
 
-}
+}  

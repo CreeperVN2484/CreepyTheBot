@@ -17,7 +17,7 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const command = args[0];
 
-    if (!command) return message.channel.send(client.main);
+    if (!command) return message.channel.send({ embeds: [client.main] });
 
 
 
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
             .setColor("FF0000")
             .setDescription(`No such command as \`${command}\``)
         // if (!client.commands.get(client.aliases.get(command))) {
-        message.channel.send(cantFind);
+        message.channel.send({ embeds: [cantFind] });
         return;
         // };
     };
@@ -38,13 +38,13 @@ module.exports.run = async (client, message, args) => {
 
     if (require('../database/enables.json')[command]) {
         if (require('../database/enables.json')[command][message.guild.id] === false) {
-            return message.channel.send(client.alreadyEnabled);
+            return message.channel.send({ embeds: [client.alreadyEnabled] });
         }
     }
 
     if (cmd.config.guarded) {
         if (cmd.config.guarded === true) {
-            return message.channel.send(client.guarded);
+            return message.channel.send({ embeds: [client.guarded] });
         }
     }
 
@@ -61,10 +61,10 @@ module.exports.run = async (client, message, args) => {
         .setColor("00FF00")
         .setDescription(`${client.success} The ${command} command has been enabled`);
 
-    message.channel.send(done);
+    message.channel.send({ embeds: [done] });
 
 
 
 
 
-}
+}  

@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
     const nvideo = args.join(" ");
     const video = nvideo.replace(" ", "%20")
     if (!video) {
-         message.channel.send("No video name provided")
+        message.channel.send({ content: "No video name provided" })
     }
 
     let a = await fetch(`https://pixel-api-production.up.railway.app/data/youtube/?video=${video}`)
@@ -28,5 +28,5 @@ module.exports.run = async (client, message, args) => {
         .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
         .setFooter(`content.thumbnail`)
 
-    message.channel.send(say)
+    message.channel.send({ embeds: [say] })
 }

@@ -23,7 +23,7 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const role = message.mentions.roles.first() ? message.mentions.roles.first() : args[0]
 
-    if (!role) return message.channel.send(client.main)
+    if (!role) return message.channel.send({ embeds: [client.main] })
 
     let mm;
     if (role === args[0]) mm = await message.guild.roles.fetch(args[0]); else mm = await message.mentions.roles.first();
@@ -43,5 +43,5 @@ module.exports.run = async (client, message, args) => {
         .setColor("00FF00")
         .setDescription(`${client.success} Set mute role to \`${mm.name}\``)
 
-    message.channel.send(success);
-}
+    message.channel.send({ embeds: [success] });
+}  

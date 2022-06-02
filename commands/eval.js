@@ -11,7 +11,7 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    if (!args[0]) return message.channel.send(client.main);
+    if (!args[0]) return message.channel.send({ embeds: [client.main] });
     let code = args.join(' ')
     code = code.replace(/[""]/g, '"').replace(/['']/g, "'")
 
@@ -24,19 +24,19 @@ module.exports.run = async (client, message, args) => {
         }
         const stop = process.hrtime(start);
         let response = [
-            `**OutPut: \`\`\`js\n${(inspect(evaled, {depth: 0}))}\n\`\`\``
-        , `**Time taken: \`\`\`${(((stop[0] * 1e9) + stop[1])) / 1e6}ms \`\`\``
-    ]
-    const res = response.join('\n')
-    if (res.length < 2000) {
-        await message.channel.send(res)
-    } else {
-        const output = new MessageAttachment(Buffer.from(res), 'output.txt');
-        await message.channel.send(output);
-        
-    }
+            `**OutPut: \`\`\`js\n${(inspect(evaled, { depth: 0 }))}\n\`\`\``
+            , `**Time taken: \`\`\`${(((stop[0] * 1e9) + stop[1])) / 1e6}ms \`\`\``
+        ]
+        const res = response.join('\n')
+        if (res.length < 2000) {
+            await message.channel.send({ embeds: [res] })
+        } else {
+            const output = new MessageAttachment(Buffer.from(res), 'output.txt');
+            await message.channel.send({ embeds: [output] });
+
+        }
     } catch (error) {
         console.log(error)
-        message.reply('Err')
+        message.reply({ content: 'Err' })
     }
-}
+}  

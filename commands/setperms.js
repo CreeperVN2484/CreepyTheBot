@@ -18,19 +18,19 @@ const { Message, Client, MessageEmbed } = require('discord.js')
  * @param {Client} client
  */
 
-module.exports.run = async(client, message, args) => {
+module.exports.run = async (client, message, args) => {
     const command = args[0];
-    if (!command) return message.channel.send(client.main);
+    if (!command) return message.channel.send({ embeds: [client.main] });
 
     if (!client.commands.has(command) /**|| !client.commands.get(client.aliases.has(command))*/) {
-        return message.channel.send(client.aintCommandSherlock)
+        return message.channel.send({ embeds: [client.aintCommandSherlock] })
     }
 
-    
+
 
     const permissionUnL = args[1];
     const permission = permissionUnL.toLocaleUpperCase()
-    if (!permission) return message.channel.send(client.main);
+    if (!permission) return message.channel.send({ embeds: [client.main] });
 
     let permissions = [
         "ADMINISTRATOR",
@@ -60,18 +60,18 @@ module.exports.run = async(client, message, args) => {
         "MUTE_MEMBERS",
         "DEAFEN_MEMBERS",
         "MOVE_MEMBERS",
-        "USE_VAD"  ,
+        "USE_VAD",
         "NONE"
     ]
 
     if (!permissions.includes(permission)) {
-        let msg = await message.channel.send('Incorrect type of permissions given \n\n `React to the message to see all permission types`');
-         msg.react('✅').then(() => {
-             client.on('messageReactionAdd', (reaction, user) => {
-                 if (reaction.message.id !== msg.id) return;
-                 msg.edit(`All permissions: \n \`${permissions.join('\n')}\``)
-             })
-         })
+        let msg = await message.channel.send({ content: 'Incorrect type of permissions given \n\n `React to the message to see all permission types`' });
+        msg.react('✅').then(() => {
+            client.on('messageReactionAdd', (reaction, user) => {
+                if (reaction.message.id !== msg.id) return;
+                msg.edit({ content: `All permissions: \n \`${permissions.join('\n')}\`` })
+            })
+        })
         return;
     };
 
@@ -88,16 +88,16 @@ module.exports.run = async(client, message, args) => {
 
     file[command][message.guild.id] = permission
 
-    fs.writeFile('./database/perms.json', JSON.stringify(file, null,2), (err) => {
+    fs.writeFile('./database/perms.json', JSON.stringify(file, null, 2), (err) => {
 
     })
 
     const done = new MessageEmbed()
         .setColor("00FF00")
-    .setDescription(`${client.success} Permissions for \`${command}\` command is now \`${permission}\``)
+        .setDescription(`${client.success} Permissions for \`${command}\` command is now \`${permission}\``)
 
-    message.channel.send(done);
+    message.channel.send({ embeds: [done] });
 
 
 
-}
+}  

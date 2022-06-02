@@ -12,18 +12,18 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     var amount = parseInt(args[0])
 
-    if (!amount) return message.channel.send("No amount specified")
-    if (amount > 100 || amount < 1) return message.channel.send("Invalid number! **Maximum 100**")
+    if (!amount) return message.channel.send({ content: "No amount specified" })
+    if (amount > 100 || amount < 1) return message.channel.send({ content: "Invalid number! **Maximum 100**" })
 
     message.delete()
     message.channel.bulkDelete(amount).catch(err => {
-        message.channel.send('Cannot delete messages older than 14 days!')
+        message.channel.send({ content: 'Cannot delete messages older than 14 days!' })
     })
 
-    let msg = await message.channel.send(`Deleted \`${amount}\` messages`)
+    let msg = await message.channel.send({ content: `Deleted \`${amount}\` messages` })
     setTimeout(() => {
         msg.delete()
     }, 10000)
 
 
-}
+}  

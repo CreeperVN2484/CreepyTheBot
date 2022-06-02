@@ -14,8 +14,8 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.clone().then(channel => {
         channel.setPosition(message.channel.position)
-        message.channel.send(`Channel nuked by ${message.author.username}\nhttps://i.gifer.com/6Ip.gif`)
+        message.channel.send({ content: `Channel nuked by ${message.author.username}\nhttps://i.gifer.com/6Ip.gif` })
     })
     message.channel.delete()
 
-}
+}  

@@ -12,34 +12,34 @@ module.exports.config = {
     guildOnly: true
 };
 
-module.exports.run = async(client, message, args) => {
-   const member = message.mentions.members.first() ? message.mentions.members.first() : args[0];
+module.exports.run = async (client, message, args) => {
+    const member = message.mentions.members.first() ? message.mentions.members.first() : args[0];
 
-   if (!member) return message.channel.send(client.main);
+    if (!member) return message.channel.send({ embeds: [client.main] });
 
-   const reason = args.slice(1).join(' ') ? args.slice(1).join(' ') : "No reason given"
+    const reason = args.slice(1).join(' ') ? args.slice(1).join(' ') : "No reason given"
 
-   let mm ;
-   try {
-   if (member === args[0]) {
-        mm = await message.guild.members.fetch(args[0]);
-   } else mm = await message.mentions.members.last();
-} catch {
+    let mm;
+    try {
+        if (member === args[0]) {
+            mm = await message.guild.members.fetch(args[0]);
+        } else mm = await message.mentions.members.last();
+    } catch {
 
-}
+    }
 
-   if (!mm) return message.channel.send(client.noMember);
+    if (!mm) return message.channel.send({ embeds: [client.noMember] });
 
-   if (mm.id === client.user.id) return message.channel.send(client.main)
+    if (mm.id === client.user.id) return message.channel.send({ embeds: [client.main] })
 
 
     if (message.guild.members.cache.has(mm.id)) {
-   if (mm.roles.highest.position > message.member.roles.highest) {
-       if (message.member.id !== message.guild.ownerID) {
-       return message.channel.send(client.higherRole);
-       }
-    }
-   if (mm.hasPermission('MANAGE_MESSAGES')) return message.channel.send(client.userstaff);
+        if (mm.roles.highest.position > message.member.roles.highest) {
+            if (message.member.id !== message.guild.ownerId) {
+                return message.channel.send({ embeds: [client.higherRole] });
+            }
+        }
+        if (mm.permissions.has('MANAGE_MESSAGES')) return message.channel.send({ embeds: [client.userstaff] });
     }
 
     message.guild.members.ban(mm.id, { reason: reason }).then(() => {
@@ -47,13 +47,13 @@ module.exports.run = async(client, message, args) => {
         const banned = new MessageEmbed()
             .setColor('008000')
             .setDescription(`${client.success} _${mm.user.username} has been banned_`)
-        message.channel.send(banned);
+        message.channel.send({ embeds: [banned] });
     }).catch((e) => {
-    console.log(e)
-    const failed = new MessageEmbed()
-    .setColor('FF0000')
-    .setDescription(`${client.fail} _Failed to ban ${mm.user.username}_`)
+        console.log(e)
+        const failed = new MessageEmbed()
+            .setColor('FF0000')
+            .setDescription(`${client.fail} _Failed to ban ${mm.user.username}_`)
 
-       message.channel.send(failed);
-   })
-}
+        message.channel.send({ embeds: [failed] });
+    })
+}  

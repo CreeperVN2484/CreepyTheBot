@@ -1,4 +1,3 @@
-
 const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
@@ -17,7 +16,7 @@ module.exports.run = async (client, message, args) => {
             .setColor('FF0000')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription("No text provided")
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
     else {
         let newtext = text.replace(/\s/g, '%20')
@@ -25,6 +24,6 @@ module.exports.run = async (client, message, args) => {
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setImage(`https://pixel-api-production.up.railway.app/image/spongebobburn/?text=${newtext}`)
-        return message.channel.send(say)
+        return message.channel.send({ embeds: [say] })
     }
-}
+}  
