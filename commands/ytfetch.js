@@ -36,5 +36,5 @@ module.exports.run = async (client, message, args) => {
             .setDescription(`\nInfo:\nVideo: ${content.title}\nPosted By: ${content.author}\nChannel: ${content.channel}\nViews: ${content.views}\n\nDescription:\n${content.description}`)
             .setFooter(`content.thumbnail`)
 
-        await interaction.reply({ embeds: [embed], components: [row] });
+        message.channel.send({ embeds: [embed], components: [row] });
 }
