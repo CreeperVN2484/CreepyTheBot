@@ -21,8 +21,8 @@ module.exports.run = async (client, message, args) => {
     content = await a.json()
     contentvideo = `${content.video}`
 
-    if (!contentvideo) {
-        message.channel.send({ content: "No video found" })
+    if (contentvideo = "undefined") {
+        return message.channel.send({ content: "No video found" })
     }
 
     const row = new MessageActionRow()
