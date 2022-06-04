@@ -1,9 +1,9 @@
 {
   "dependencies": {
+    "discord-menu-embed": "^1.0.2",
     "discord.js": "^13.7.0",
-    "goto-js": "^0.0.2",
+    "mongoose": "^6.3.5",
     "ms": "^2.1.3",
-    "pixel-api-wrapper": "^1.2.17",
     "uuid": "^8.3.2"
   }
 }
