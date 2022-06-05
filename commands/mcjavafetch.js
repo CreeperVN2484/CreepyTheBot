@@ -1,4 +1,5 @@
 const { Message, MessageEmbed } = require("discord.js");
+const fetch = require('node-fetch')
 
 module.exports.config = {
     name: "mcjavafetch",
