@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setTitle("**Server Found!**")
-        .setDescription(`\nInfo:\nName: ${content.motd.clean}\n\Version: ${content.version.name}\nProtocol: ${content.version.protocol}\n\nCurrent Players: ${content.players.online}\nMaximum players: ${content.player.max}\n\nServerGUID: ${content.serverGUID}\nGamemode: ${content.gameMode}`)
+        .setDescription(`\nInfo:\nName: ${content.motd.clean}\n\Version: ${content.version.name}\nProtocol: ${content.version.protocol}\n\nCurrent Players: ${content.players.online}\nMaximum players: ${content.players.max}\n\nServerGUID: ${content.serverGUID}\nGamemode: ${content.gameMode}`)
         .setImage(`${content.favicon_url}`)
 
     message.channel.send({ embeds: [say] })
