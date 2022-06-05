@@ -14,7 +14,7 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const ip = agrs[0];
+    const ip = args[0];
     const port = args[1];
 
     if (!ip) {
