@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({ content: "No port provided" })
     }
 
-    util.statusBedrock(`${ip}`, port, options)
+    await util.statusBedrock(`${ip}`, port, options)
         .then((result) => console.log(result))
         .catch((error) => message.channel.send({ content: "Server not found" }));
 
