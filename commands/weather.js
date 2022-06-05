@@ -11,7 +11,7 @@ module.exports.config = {
 }
 
 module.exports.run = async (client, message, args) => {
-    const location = args[0];
+    const location = args.join(" ");
 
     if (!location) {
         return message.channel.send({ content: "Error: No Location provided" })
