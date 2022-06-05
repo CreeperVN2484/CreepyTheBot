@@ -25,19 +25,20 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({ content: "No port provided" })
     }
 
-    await util.statusBedrock(`${ip}`, port, options)
-        .then((result) => console.log(result))
-        .catch((error) => message.channel.send({ content: "Server not found" }));
+    try {
+        const result = await util.statusBedrock(`${ip}`, port, options)
 
-    let content = result
+        let content = result
 
-    const say = new MessageEmbed()
-        .setColor('00FF00')
-        .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-        .setTitle("**Server Found!**")
-        .setDescription(`\nInfo:\nName: ${content.motd.clean}\n\Version: ${content.version.name}\nProtocol: ${content.version.protocol}\n\nCurrent Players: ${content.players.online}\nMaximum players: ${content.players.max}\n\nServerGUID: ${content.serverGUID}\nGamemode: ${content.gameMode}`)
-        .setImage(`${content.favicon_url}`)
+        const say = new MessageEmbed()
+            .setColor('00FF00')
+            .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
+            .setTitle("**Server Found!**")
+            .setDescription(`\nInfo:\nName: ${content.motd.clean}\n\Version: ${content.version.name}\nProtocol: ${content.version.protocol}\n\nCurrent Players: ${content.players.online}\nMaximum players: ${content.players.max}\n\nServerGUID: ${content.serverGUID}\nGamemode: ${content.gameMode}`)
+            .setImage(`${content.favicon_url}`)
+        message.channel.send({ embeds: [say] })
 
-    message.channel.send({ embeds: [say] })
-
+    } catch (e) {
+        message.channel.send({ content: "Server offline" })
+    }
 }

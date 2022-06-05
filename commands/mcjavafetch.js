@@ -20,9 +20,14 @@ module.exports.run = async (client, message, args) => {
     content = await a.json()
 
     name = `${content.version.name}`
+    check = `${content.motd.clean}`
 
     if (name === "undefined") {
-        message.channel.send({ content: "Server Not Found / Unsupported Server Version (Only support 1.7.2+)" })
+        message.channel.send({ content: "Server Not Found / Unsupported Server Version (Only support 1.7.2+) or the server is offline" })
+    }
+
+    if (check === "Server not found.") {
+        message.channel.send({ content: "Server offline" })
     }
 
     const say = new MessageEmbed()

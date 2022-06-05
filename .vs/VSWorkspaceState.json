@@ -11,6 +11,6 @@
     "\\utils\\structure",
     "\\utils\\structure\\exports"
   ],
-  "SelectedNode": "\\commands\\mcfetch.js",
+  "SelectedNode": "\\utils\\structure\\exports\\escapeRegex.js",
   "PreviewInSolutionExplorer": false
 }
