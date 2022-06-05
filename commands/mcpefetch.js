@@ -30,6 +30,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({ content: "Invalid port" })
     }
 
+    try {
         const result = await util.statusBedrock(`${ip}`, nport, options)
 
         let content = result
@@ -40,5 +41,7 @@ module.exports.run = async (client, message, args) => {
             .setTitle("**Server Found!**")
             .setDescription(`\nInfo:\nName: ${content.motd.clean}\n\Version: ${content.version.name}\nProtocol: ${content.version.protocol}\n\nCurrent Players: ${content.players.online}\nMaximum players: ${content.players.max}\n\nServerGUID: ${content.serverGUID}\nGamemode: ${content.gameMode}`)
         message.channel.send({ embeds: [say] })
-
+    } catch (err) {
+        message.channel.send({ content: "Server offline / Server not found" })
+    }
 }
