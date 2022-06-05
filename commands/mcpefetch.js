@@ -16,6 +16,7 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const ip = args[0];
     const port = args[1];
+    const nport = Number(`${port}`)
 
     if (!ip) {
         message.channel.send({ content: "No IP provided" })
@@ -23,6 +24,10 @@ module.exports.run = async (client, message, args) => {
 
     if (!port) {
         message.channel.send({ content: "No port provided" })
+    }
+
+    if (nport === "NaN") {
+        message.channel.send({ content: "Invalid port" })
     }
 
         const result = await util.statusBedrock(`${ip}`, port, options)
