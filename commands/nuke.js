@@ -1,4 +1,4 @@
-const { MessageEmbed, Message, Client } = require("discord.js")
+const { Message } = require("discord.js")
 
 module.exports.config = {
     name: "nuke",
@@ -12,9 +12,12 @@ module.exports.config = {
 
 module.exports.run = async (client, message, args) => {
 
-    message.channel.clone().then(channel => {
+    message.channel.clone().then((channel) => {
         channel.setPosition(message.channel.position)
+        channel.setParent(message.channel.parent.id)
     })
     message.channel.delete()
+
+    message.channel.send({ content: `Nuked by ${message.author.username}` })
 
 }  
