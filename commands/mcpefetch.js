@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send({ content: "Invalid port" })
     }
 
-        const result = await util.statusBedrock(`${ip}`, port, options)
+        const result = await util.statusBedrock(`${ip}`, nport, options)
 
         let content = result
 
