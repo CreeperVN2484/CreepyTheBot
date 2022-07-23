@@ -1,4 +1,3 @@
-const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
     name: "clear",

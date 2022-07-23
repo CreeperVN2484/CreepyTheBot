@@ -11,7 +11,6 @@ const { MessageEmbed, Client, Message } = require('discord.js');
 
 module.exports = async (client, message) => {
     if (message.channel.type === "UNKNOWN") return;
-    //if (message.channel.type !== 'dm') {
     var prePrefix;
     if (require('../../database/prefixes.json')[message.guild.id]) {
         prePrefix = await require('../../database/prefixes.json')[message.guild.id].prefix;
