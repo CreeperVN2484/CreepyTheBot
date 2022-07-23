@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
     name: "avatar",
@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
         try {
             let mm = await client.users.fetch(args[0]);
 
-            const e = await new EmbedBuilder()
+            const e = await new MessageEmbed()
                 .setColor('008000')
                 .setDescription(`${mm.username}'s avatar!`)
                 .setImage(mm.displayAvatarURL({ dynamic: true }))
@@ -26,7 +26,7 @@ module.exports.run = async (client, message, args) => {
         }
     } else {
 
-        const embed = new EmbedBuilder()
+        const embed = new MessageEmbed()
             .setColor('0000FF')
             .setDescription(`${user.username}'s avatar!`)
             .setImage(user.displayAvatarURL({ dynamic: true }))

@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+const { Message, Client, MessageEmbed } = require("discord.js");
 const fs = require('fs')
 module.exports.config = {
     name: "ban",
@@ -44,13 +44,13 @@ module.exports.run = async (client, message, args) => {
 
     message.guild.members.ban(mm.id, { reason: reason }).then(() => {
 
-        const banned = new EmbedBuilder()
+        const banned = new MessageEmbed()
             .setColor('008000')
             .setDescription(`${client.success} _${mm.user.username} has been banned_`)
         message.channel.send({ embeds: [banned] });
     }).catch((e) => {
         console.log(e)
-        const failed = new EmbedBuilder()
+        const failed = new MessageEmbed()
             .setColor('FF0000')
             .setDescription(`${client.fail} _Failed to ban ${mm.user.username}_`)
 

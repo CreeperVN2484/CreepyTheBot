@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { MessageEmbed, Message, Client } = require("discord.js")
 
 module.exports.config = {
     name: "abandon",
@@ -12,7 +12,7 @@ module.exports.config = {
 module.exports.run = async (client, message, args) => {
     const text = args.join(" ");
     if (!text) {
-        const say = new EmbedBuilder()
+        const say = new MessageEmbed()
             .setColor('FF0000')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setDescription("No text provided")
@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
     }
     else {
         let newtext = text.replace(/\s/g, '%20')
-        const say = new EmbedBuilder()
+        const say = new MessageEmbed()
             .setColor('00FF00')
             .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
             .setImage(`https://pixel-api-production.up.railway.app/image/abandon/?text=${newtext}`)

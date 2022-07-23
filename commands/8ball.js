@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js")
+const { MessageEmbed, Message, Client } = require("discord.js")
 const fetch = require("node-fetch")
 module.exports.config = {
     name: "8ball",
@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     let content = await fetch(`https://pixel-api-production.up.railway.app/fun/8ball`)
     ncontent = await content.json()
 
-    const say = new EmbedBuilder()
+    const say = new MessageEmbed()
         .setColor('00FF00')
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setDescription(`${ncontent.reply}`)
