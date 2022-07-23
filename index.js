@@ -1,5 +1,11 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const client = new Client({ intents: [GatewayIntentBits.GUILDS, GatewayIntentBits.GUILD_MESSAGES] });
+const client = new Client({
+    intents:
+        [
+            "Guilds",
+            "GuildMember"
+        ]
+});
 
 require('./utils/defines')(client);
 require('./utils/structure/registery')(client);
