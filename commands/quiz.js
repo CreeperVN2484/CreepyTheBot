@@ -22,12 +22,12 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({ embeds: [mainEmbed] }).then(() => {
         message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
-            console.log()
             .then(collected => {
                 message.channel.send({ content: `${collected.first().author} got the correct answer first!` });
             })
             .catch(() => {
                 message.channel.send({ content: `The answer is ${quiz.answer} .Nobody got the right answer.` });
             });
+        console.log()
     })
 }  
