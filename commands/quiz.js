@@ -1,4 +1,4 @@
-const { MessageEmbed, Intents } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch')
 
 module.exports.config = {
@@ -22,6 +22,7 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({ embeds: [mainEmbed] }).then(() => {
         message.channel.awaitMessages(filter, { max: 1, time: 30000, errors: ['time'] })
+            console.log()
             .then(collected => {
                 message.channel.send({ content: `${collected.first().author} got the correct answer first!` });
             })
