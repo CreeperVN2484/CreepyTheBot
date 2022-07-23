@@ -13,13 +13,12 @@ module.exports.run = async (client, message, args) => {
     const riddle = await fetch(`https://pixel-api-production.up.railway.app/fun/riddle`)
     const quiz = await riddle.json()
     const filter = response => {
-        return quiz.answer.some(answer => answer.toLowerCase() === response.content.toLowerCase());
+        return quiz.answer(answer => answer.toLowerCase() === response.content.toLowerCase());
     };
 
     const mainEmbed = new MessageEmbed()
         .setColor("00FF00")
         .setDescription(`Quiz: ${quiz.riddle}`)
-    console.log(answer => answer.toLowerCase() === response.content.toLowerCase())
     message.channel.send({ embeds: [mainEmbed] }).then(() => {
         message.channel.awaitMessages(filter, { max: 1, time: 30, errors: ['time'] })
             .then(collected => {
