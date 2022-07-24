@@ -19,9 +19,8 @@ module.exports.run = async (client, message, args) => {
     const mainEmbed = new MessageEmbed()
         .setColor("00FF00")
         .setDescription(`Quiz: ${quiz.riddle}`)
-    message.channel.send({ embeds: [mainEmbed] }).then(() => {
-        message.channel.awaitMessages(filter, { max: 1, time: 30, errors: ['time'] })
-            .then(collected => {
+    channel.send({ embeds: [mainEmbed] }).then(() => {
+        message.channel.awaitMessages(filter, { max: 1, time: 30, errors: ['time'] }).then(collected => {
                 message.channel.send({ content: `${collected.first().author} got the correct answer first!` });
             })
             .catch(() => {
